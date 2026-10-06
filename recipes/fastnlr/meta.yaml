@@ -1,5 +1,5 @@
 {% set name = "fastnlr" %}
-{% set version = "1.1.1" %}
+{% set version = "1.3.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,12 +7,10 @@ package:
 
 source:
   url: https://github.com/CropCoder/FastNLR/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: d40368070ad74453c7b5fca0f4cfeda1bae8262491de63863446d2a0c737f7d4
+  sha256: 9ffc1e97778e19aa758704ab4abb39db326c7d47c449821f719dd7827254521d
 
 build:
   number: 0
-  run_exports:
-    - {{ pin_subpackage("fastnlr", max_pin="x") }}
 
 requirements:
   build:
@@ -20,13 +18,11 @@ requirements:
     - {{ compiler('c') }}
     - {{ stdlib("c") }}
     - cargo-bundle-licenses
-  host:
-    - pkg-config
-  run:
 
 test:
   commands:
     - fastnlr --version
+    - fastnlr --help
 
 about:
   home: https://github.com/CropCoder/FastNLR
